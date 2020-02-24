@@ -14,8 +14,15 @@ class CreateTareasTable extends Migration
     public function up()
     {
         Schema::create('tareas', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+          $table->bigIncrements('id');
+          $table->unsignedBigInteger('user_id');
+          $table->unsignedBigInteger('categoria_id');
+          $table->string('tarea');
+          $table->unsignedSmallInteger('prioridad');
+          $table->date('fecha_entrega');
+          $table->text('descripcion');
+          $table->unsignedBigInteger('equipo_id')->nullable();
+          $table->timestamps();
         });
     }
 

@@ -19,7 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('prueba/{nombre?}', function($nombre = 'desconocido'){
-  $nombre = strtoupper($nombre);
-  return view('vista-prueba')->with(['nombre'=> $nombre]);
-});
+Route::resource('tarea','TareaController');
+
+//Route::get('prueba/{nombre?}', function($nombre = 'desconocido'){
+  //$nombre = strtoupper($nombre);
+  //return view('vista-prueba')->with(['nombre'=> $nombre]);
+//});
