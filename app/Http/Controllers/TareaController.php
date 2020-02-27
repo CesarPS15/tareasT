@@ -14,8 +14,9 @@ class TareaController extends Controller
      */
     public function index()
     {
-          //tareas = consultar tareas de tabla de tareas
-            return view('tareas.tareaIndex');//->with(['tarea' =>$tarea]);
+            $tareas = Tarea::all(); // del modelo tarea traiga todo
+            //dd($tareas);
+            return view('tareas.tareaIndex', compact('tareas'));//->with(['tareas' =>$tareas]);
     }
 
     /**
@@ -37,7 +38,15 @@ class TareaController extends Controller
     public function store(Request $request)
     {
       //Insertar en DB
-      return redirect('tarea');
+      //dd($request->tarea);->all()
+      $tarea = new Tarea();
+      $tarea->tarea = $request->tarea;
+      $tarea->descripcion = $request->descripcion;
+      $tarea->fecha_entrega = $request->Fecha_de_entrega;
+      $tarea->prioridad = $request->prioridad;
+      $tarea->save();
+      //dd($tarea);
+      return redirect()->route('tarea.index');
     }
 
     /**
