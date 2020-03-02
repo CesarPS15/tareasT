@@ -14,14 +14,17 @@
                             <th>ID</th>
                             <th>Tarea</th>
                             <th>Descripcion</th>
+                            <th>Fecha de Entrega</th>
                             <th>Prioridad</th>
                         </tr>
                         @foreach($tareas as $tarea)
                         <tr>
                             <th>{{$tarea->id}}</th>
                         <th>
-                            <a href="{{route('tarea.show', $tarea->id)}}">{{$tarea->tarea}}</th>
+                            <a href="{{route('tarea.show', $tarea->id)}}">{{$tarea->tarea}} </a>
+                        </th>
                             <th>{{$tarea->descripcion}}</th>
+                            <th>{{$tarea->fecha_entrega}}</th>
                             <th>{{$tarea->prioridad}}</th>
                         </tr>
                         @endforeach

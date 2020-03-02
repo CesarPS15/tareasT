@@ -45,7 +45,7 @@ class TareaController extends Controller
       $tarea->fecha_entrega = $request->Fecha_de_entrega;
       $tarea->prioridad = $request->prioridad;
       $tarea->save();
-      //dd($tarea);
+
       return redirect()->route('tarea.index');
     }
 
@@ -57,7 +57,7 @@ class TareaController extends Controller
      */
     public function show(Tarea $tarea)
     {
-        return view('tareas.tareaShow');//->with(['tarea' =>$tarea]);
+        return view('tareas.tareaShow', compact('tarea'));//->with(['tarea' =>$tarea]);
     }
 
     /**
@@ -68,7 +68,7 @@ class TareaController extends Controller
      */
     public function edit(Tarea $tarea)
     {
-        //
+        return view('tareas.tareaForm', compact('tarea'));
     }
 
     /**
@@ -80,7 +80,13 @@ class TareaController extends Controller
      */
     public function update(Request $request, Tarea $tarea)
     {
-        //
+      $tarea->tarea = $request->tarea;
+      $tarea->descripcion = $request->descripcion;
+      $tarea->fecha_entrega = $request->Fecha_de_entrega;
+      $tarea->prioridad = $request->prioridad;
+      $tarea->save();
+
+      return redirect()->route('tarea.show', $tarea->id);
     }
 
     /**
@@ -91,6 +97,7 @@ class TareaController extends Controller
      */
     public function destroy(Tarea $tarea)
     {
-        //
+        $tarea->delete();
+        return redirect()->route('tarea.index');
     }
 }
