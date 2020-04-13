@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Categoria;
 use App\Tarea;
 use Illuminate\Http\Request;
 
 class TareaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +31,8 @@ class TareaController extends Controller
      */
     public function create()
     {
-        return view('tareas.tareaForm');
+        $categorias = Categoria::all()->pluck('nombre', 'id');
+        return view('tareas.tareaForm',compact('categorias'));
     }
 
     /**
@@ -40,16 +46,18 @@ class TareaController extends Controller
       $request->validate([
           'tarea' => 'required|max:255',
           'descripcion' => 'required',
-          'Fecha_de_entrega' => 'required|date',
+          'fecha_entrega' => 'required|date',
           'prioridad' => 'required|min:1|max:5'
       ]);
 
 
       $tarea = new Tarea();
+      $tarea->user_id = \Auth::id();
       $tarea->tarea = $request->tarea;
       $tarea->descripcion = $request->descripcion;
-      $tarea->fecha_entrega = $request->Fecha_de_entrega;
+      $tarea->fecha_entrega = $request->fecha_entrega;
       $tarea->prioridad = $request->prioridad;
+      $tarea->categoria_id = $request->categoria_id ;
       $tarea->save();
 
       return redirect()->route('tarea.index');
@@ -74,7 +82,8 @@ class TareaController extends Controller
      */
     public function edit(Tarea $tarea)
     {
-        return view('tareas.tareaForm', compact('tarea'));
+        $categorias = Categoria::all()->pluck('nombre', 'id');
+        return view('tareas.tareaForm', compact('tarea', 'categorias'));
     }
 
     /**
@@ -90,14 +99,15 @@ class TareaController extends Controller
       $request->validate([
           'tarea' => 'required|max:255',
           'descripcion' => 'required',
-          'Fecha_de_entrega' => 'required|date',
+          'fecha_entrega' => 'required|date',
           'prioridad' => 'required|min:1|max:5'
       ]);
 
       $tarea->tarea = $request->tarea;
       $tarea->descripcion = $request->descripcion;
-      $tarea->fecha_entrega = $request->Fecha_de_entrega;
+      $tarea->fecha_entrega = $request->fecha_entrega;
       $tarea->prioridad = $request->prioridad;
+      $tarea->categoria_id = $request->categoria_id ;
       $tarea->save();
 
       return redirect()->route('tarea.show', $tarea->id);

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tema')
 
 @section('content')
 <div class="container">
@@ -22,6 +22,8 @@
                             <th>Descripcion</th>
                             <th>Fecha de Entrega</th>
                             <th>Prioridad</th>
+                            <th>Categoria</th>
+                            <th>Usuario</th>
                         </tr>
                         <tr>
                             <th>{{$tarea->id}}</th>
@@ -29,6 +31,9 @@
                             <th>{{$tarea->descripcion}}</th>
                             <th>{{$tarea->fecha_entrega}}</th>
                             <th>{{$tarea->prioridad}}</th>
+                            <th>{{$tarea->categoria->nombre}}</th>
+                            <th>{{$tarea->user->name}}<br>
+                            </th>
                         </tr>
                     </table>
                 </div>

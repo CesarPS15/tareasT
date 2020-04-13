@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('tarea','TareaController');
+Route::resource('equipo', 'EquipoController')->only(['index', 'edit', 'update']);
 
 //Route::get('prueba/{nombre?}', function($nombre = 'desconocido'){
   //$nombre = strtoupper($nombre);

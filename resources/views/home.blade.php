@@ -1,7 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.tema')
 
 @section('content')
-<div class="container">
+<!-- Page Heading -->
+    <h1 class="h3 mb-4 text-gray-800"> Página Inicio</h1>
+@endsection
+{{--<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -14,10 +17,9 @@
                         </div>
                     @endif
 
-                    You are logged in!                  
+                    You are logged in!
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+</div>--}}

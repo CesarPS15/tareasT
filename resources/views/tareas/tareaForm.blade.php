@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.tema')
 
 @section('content')
 <div class="container">
@@ -25,21 +25,26 @@
                         <div class="form-group">
                             {!! Form::label('tarea', 'Tarea')!!}
                           {!! Form::text('tarea',null,['class' => 'form-control', 'id' => 'tarea', 'required', 'placeholder'=>'Ingresa la tarea'] )!!}
-                        {{ $errors->first('tarea') }}
+                        {{--{{ $errors->first('tarea') }}--}}
                         </div>
                         <div class="form-group">
                           <label for="descripcion">Descripción</label>
                           {!! Form::textarea('descripcion', null, ['class' => 'form-control', 'rows' => '5', 'id'=> 'descripcion', 'placeholder' => 'Añade una descripción']) !!}
-                          {{ $errors->first('descripcion') }}
+                          {{--{{ $errors->first('descripcion') }}--}}
                         </div>
                         <div class="form-group">
                             <label for="fecha_de_Entrega">Fecha de Entrega</label>
                             {!! Form::date('fecha_entrega', null, ['class' => 'form-control'])!!}
-                            {{ $errors->first('fecha_entrega') }}
+                            {{--{{ $errors->first('fecha_entrega') }}--}}
                         </div>
                         <label class="form-group" for="prioridad">Prioridad</label>
                         {!! Form::select('prioridad',['1' => 'Baja', '3' => 'Media', '5'=> 'Alta'],null, ['class' => 'form-control']) !!}
-                            {{ $errors->first('prioridad') }}
+                            {{--{{ $errors->first('prioridad') }}--}}
+                            <br>
+
+                        <label class="form-group" for="categoria_id">Categoria</label>
+                        {!! Form::select('categoria_id', $categorias ,null, ['class' => 'form-control']) !!}
+                            {{--{{ $errors->first('prioridad') }}--}}
                             <br>
                             {!! Form::submit('Guardar',['class' => 'btn btn-outline-primary'])!!}
                       {!! Form::close() !!}
